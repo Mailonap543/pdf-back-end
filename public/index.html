@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload e Download de PDFs</title>
+</head>
+<body>
+  <h1>Cadastro de Usuário</h1>
+  <form action="/register" method="POST">
+    <input type="text" name="username" placeholder="Nome de Usuário" required>
+    <input type="password" name="password" placeholder="Senha" required>
+    <button type="submit">Registrar</button>
+  </form>
+
+  <h1>Login</h1>
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="Nome de Usuário" required>
+    <input type="password" name="password" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+
+  <h1>Upload de PDF</h1>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="pdf" accept="application/pdf" required>
+    <button type="submit">Enviar PDF</button>
+  </form>
+
+  <hr>
+
+  <h1>Baixar PDF</h1>
+  <form action="/download" method="GET">
+    <input type="text" name="filename" placeholder="Nome do Arquivo" required>
+    <button type="submit">Baixar PDF</button>
+  </form>
+
+  <h1>Excluir PDF</h1>
+  <form action="/delete" method="POST">
+    <input type="text" name="filename" placeholder="Nome do Arquivo" required>
+    <button type="submit">Excluir PDF</button>
+  </form>
+</body>
+</html>
