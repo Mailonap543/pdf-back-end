@@ -3,41 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload e Download de PDFs</title>
+  <title>Gerenciamento de PDFs</title>
+  <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-  <h1>Cadastro de Usuário</h1>
-  <form action="/register" method="POST">
-    <input type="text" name="username" placeholder="Nome de Usuário" required>
-    <input type="password" name="password" placeholder="Senha" required>
-    <button type="submit">Registrar</button>
-  </form>
-
-  <h1>Login</h1>
-  <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Nome de Usuário" required>
-    <input type="password" name="password" placeholder="Senha" required>
-    <button type="submit">Entrar</button>
-  </form>
-
-  <h1>Upload de PDF</h1>
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="pdf" accept="application/pdf" required>
-    <button type="submit">Enviar PDF</button>
-  </form>
-
-  <hr>
-
-  <h1>Baixar PDF</h1>
-  <form action="/download" method="GET">
-    <input type="text" name="filename" placeholder="Nome do Arquivo" required>
-    <button type="submit">Baixar PDF</button>
-  </form>
-
-  <h1>Excluir PDF</h1>
-  <form action="/delete" method="POST">
-    <input type="text" name="filename" placeholder="Nome do Arquivo" required>
-    <button type="submit">Excluir PDF</button>
-  </form>
+    <div class="button-container">
+        <button onclick="location.href='cadastro'" class="button">Cadastro</button>
+        <button onclick="location.href='login'" class="button">Login</button>
+        <button onclick="location.href='upload'" class="button">Upload de PDF</button>
+        <button onclick="location.href='download'" class="button">Baixar PDF</button>
+        <button onclick="location.href='delete'" class="button">Excluir PDF</button>
+    </div>
 </body>
 </html>

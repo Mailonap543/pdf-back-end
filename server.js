@@ -9,10 +9,9 @@ const User = require('./models/User');
 
 const app = express();
 
- 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname, 'public'))); // Servindo arquivos estáticos
 
 mongoose.connect('mongodb://localhost:27017/pdfs', {
   useNewUrlParser: true,
@@ -20,7 +19,6 @@ mongoose.connect('mongodb://localhost:27017/pdfs', {
 })
 .then(() => console.log('Banco de dados conectado'))
 .catch(err => console.log('Erro ao conectar no banco de dados', err));
-
 
 const authenticate = async (req, res, next) => {
   const user = basicAuth(req);
@@ -35,12 +33,10 @@ const authenticate = async (req, res, next) => {
   next();
 };
 
-
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir); 
 }
-
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -83,7 +79,6 @@ app.post('/register', async (req, res) => {
   res.status(201).send('Usuário criado com sucesso');
 });
 
-
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -117,6 +112,26 @@ app.get('/download/:filename', authenticate, (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cadastro.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/upload', authenticate, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'upload.html'));
+});
+
+app.get('/download', authenticate, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'download.html'));
+});
+
+app.get('/delete', authenticate, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'delete.html'));
 });
 
 app.delete('/delete/:filename', authenticate, (req, res) => {
